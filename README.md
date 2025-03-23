@@ -2,6 +2,8 @@
 
 ## Learning Topics
 
+<google.com>
+
 - Event Handling
 - Data Persistence
 - LocalStorage
