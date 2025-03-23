@@ -2,7 +2,7 @@
 
 ## Learning Topics
 
-<google.com>
+[Google](https://google.com)
 
 - Event Handling
 - Data Persistence
