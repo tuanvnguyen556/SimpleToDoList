@@ -33,7 +33,7 @@ function storeLocalToContainer(){
 function listenEditEvent(){
     
     for (let i = 0; i < toDoContainer.length; i++){
-        console.log(toDoContainer);
+        // console.log(toDoContainer);
         let editObjectElement = document.querySelector(`.button-edit-${toDoContainer[i]["id"]}`);
         editObjectElement.addEventListener('click', () => {
             
@@ -44,15 +44,12 @@ function listenEditEvent(){
                 toDoContainer[i]["name"] = InputElement.value;
                 editObjectElement.innerText = 'Edit';
                 InputElement.value = "";
-                localStorage.setItem("to-do", JSON.stringify(toDoContainer))``;
+                localStorage.setItem("to-do", JSON.stringify(toDoContainer));
                 
             } else{
                 nameObjectElement.innerHTML = `<input class="input-${toDoContainer[i]["id"]}">`;
                 editObjectElement.innerText = 'Save';
             }
-           
-
-            
             
         })
     }
@@ -103,12 +100,26 @@ function inputSubmit(){
     location.reload();
 }
 
+function listenRemoveEvent(){
+    for (let i = 0; i < toDoContainer.length; i++){
+        let removeElementObject = document.querySelector(`.button-remove-${toDoContainer[i]["id"]}`);
+        removeElementObject.addEventListener('click', () => {
+            console.log(`cliked on ${toDoContainer[i]["id"]}`);
+            toDoContainer = toDoContainer.filter((item) => item.id != toDoContainer[i]["id"]);
+            localStorage.setItem("to-do", JSON.stringify(toDoContainer));
+            location.reload();
+        })
+    }
+    
+}
+
 if (localStorage.getItem("to-do") == null){
     localStorage.setItem("to-do", JSON.stringify(toDoContainer));
 } else{
-    console.log(localStorage.getItem("to-do"));
+    // console.log(localStorage.getItem("to-do"));
     toDoContainer = JSON.parse(localStorage.getItem("to-do"));
 }
 
 storeLocalToContainer();
 listenEditEvent();
+listenRemoveEvent();
